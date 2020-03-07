@@ -17,6 +17,7 @@ AUDIO_DELTA=${AUDIO_DELTA:-5}
 
 DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}
+SYMBOL_COLOR=${SYMBOL_COLOR:-"#ffffff"}
 
 LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
 SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}% [${INDEX}]'}
@@ -114,7 +115,7 @@ case "$BLOCK_BUTTON" in
 esac
 
 function print_format {
-    echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
+    echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}' | tee -a ~/.log/pulse-block.log
 }
 
 function print_block {
@@ -157,6 +158,9 @@ sed 's/.*= "\(.*\)".*/\1/')
         SYMB=$AUDIO_MUTED_SYMBOL
         COLOR=$MUTED_COLOR
     fi
+
+    SYMB="$(echo "$SYMB" | 
+        sed "s/\(.*\)/<span foreground=\"$SYMBOL_COLOR\" size=\"x-large\">\1<\/span>/g")"
 
     if [[ $SUBSCRIBE == 1 ]] ; then
         print_format "$LONG_FORMAT"
