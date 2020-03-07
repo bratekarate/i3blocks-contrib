@@ -18,6 +18,7 @@ AUDIO_DELTA=${AUDIO_DELTA:-5}
 DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}
 SYMBOL_COLOR=${SYMBOL_COLOR:-"#ffffff"}
+SYMBOL_SIZE=${SYMBOL_SIZE:-"medium"}
 
 LONG_FORMAT=${LONG_FORMAT:-'${SYMB}  ${VOL}% [${INDEX}:${NAME}]'}
 SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB}  ${VOL}% [${INDEX}]'}
@@ -160,7 +161,7 @@ sed 's/.*= "\(.*\)".*/\1/')
     fi
 
     SYMB="$(echo "$SYMB" | 
-        sed "s/\(.*\)/<span foreground=\"$SYMBOL_COLOR\" size=\"x-large\">\1<\/span>/g")"
+        sed "s/\(.*\)/<span foreground=\"$SYMBOL_COLOR\" size=\"$SYMBOL_SIZE\">\1<\/span>/g")"
 
     if [[ $SUBSCRIBE == 1 ]] ; then
         print_format "$LONG_FORMAT"
