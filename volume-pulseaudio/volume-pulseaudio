@@ -116,7 +116,7 @@ case "$BLOCK_BUTTON" in
 esac
 
 function print_format {
-    echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}' | tee -a ~/.log/pulse-block.log
+    echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
 }
 
 function print_block {
