@@ -3,6 +3,6 @@
 
 MARKUP='<span foreground="$FG" size="medium">$TXT</span>'
 
-[ "$(sudo wg show | awk -F ': ' '$1 ~ "interface" { print $2 }')" == "wg0" ] \
-    && echo $MARKUP | FG='#DA4167' TXT='ON!' envsubst \
-    || echo $MARKUP | FG='#7F9183' TXT='off' envsubst
+[ "$(sudo wg show | awk -F ': ' '$1 ~ "interface" { print $2 }')" = "wg0" ] \
+    && echo "$MARKUP" | FG='#DA4167' TXT='ON!' envsubst \
+    || echo "$MARKUP" | FG='#7F9183' TXT='off' envsubst
