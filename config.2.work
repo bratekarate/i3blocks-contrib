@@ -1,0 +1,15 @@
+[wifi]
+INTERFACE=wlp59s0
+#command=./wifi/wifi
+label=  
+interval=10
+min_width=80
+align=center
+#separator=false
+
+[battery2]
+markup=pango
+#label=BAT
+label=⚡
+interval=30
+
